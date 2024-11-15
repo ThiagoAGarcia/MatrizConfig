@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+.color-picker {
+    margin: 10px;
+}
+
+.colors {
+    display: flex;
+    gap: 5px;
+}
+
+.color {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(32, 20px);
+    grid-template-rows: repeat(32, 20px);
+    gap: 1px;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    cursor: pointer;
+}
+
+button {
+    margin: 20px;
+}
+
+input[type="file"] {
+    margin: 10px;
+}
+/* Estilo general */
+
+/* Estilo de la cuadrícula */
+#grid {
+    display: grid;
+    grid-template-columns: repeat(32, 20px);
+    grid-template-rows: repeat(32, 20px);
+    gap: 1px;
+    margin-top: 20px;
+}
+
+/* Celdas de la cuadrícula */
+.cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: black;
+    cursor: pointer;
+}
+
+/* Estilo del selector de color */
+.color-picker {
+    margin-bottom: 20px;
+}
+
+.colors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.color {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Estilo de los botones de herramientas */
+.tools {
+    margin-top: 20px;
+}
+
+.tool-btn {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tool-btn:hover {
+    background-color: #ccc;
+}
+
+/* Botones seleccionados */
+.tool-btn.selected {
+    background-color: #007BFF;
+    color: white;
+}
+
+#export-code, #upload-image {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#export-code:hover, #upload-image:hover {
+    background-color: #0056b3;
+}

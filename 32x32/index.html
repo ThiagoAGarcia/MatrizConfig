@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Art 32x32</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Pixel Art 32x32</h1>
+    <div class="color-picker">
+        <label>Color actual: <span id="color-code">0x00</span></label>
+        <div class="colors">
+            <div class="color" data-color="0x00" style="background-color: #000000;"></div>
+            <div class="color" data-color="0x01" style="background-color: #00FF00;"></div>
+            <div class="color" data-color="0x02" style="background-color: #FF0000;"></div>
+            <div class="color" data-color="0x03" style="background-color: #FFFF00;"></div>
+            <div class="color" data-color="0x04" style="background-color: #0000FF;"></div>
+            <div class="color" data-color="0x05" style="background-color: #FF00FF;"></div>
+            <div class="color" data-color="0x06" style="background-color: #00FFFF;"></div>
+            <div class="color" data-color="0x07" style="background-color: #FFFFFF;"></div>
+        </div>
+        <div class="tools">
+            <button id="pencil-tool" class="tool-btn">Lápiz</button>
+            <button id="bucket-tool" class="tool-btn">Balde</button>
+            <button id="import-code" class="tool-btn">Importar Código</button>
+            <button id="undo" class="tool-btn">Deshacer</button>
+            <button id="redo" class="tool-btn">Rehacer</button>
+        </div>
+    </div>
+    <div class="grid" id="grid"></div>
+    <textarea type="text" id="text-input" placeholder="Escribe algo"></textarea>
+    <button id="write-text">Escribir en la matriz</button>
+    <button id="export-code">Exportar Código</button>
+    <input type="file" id="upload-image" accept="image/*">
+    <script src="script.js"></script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</html>
