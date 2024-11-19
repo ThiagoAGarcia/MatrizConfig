@@ -249,7 +249,7 @@ function importCode() {
     const cells = document.querySelectorAll('.cell');
     Swal.fire({
         title: 'Importar código',
-        html: `<textarea id="import-input" style="width: 100%; height: 100px;"></textarea>`,
+        html: '<textarea id="import-input" style="width: 100%; height: 100px;"></textarea>',
         showCancelButton: true,
         confirmButtonText: 'Importar',
         preConfirm: () => {
@@ -262,6 +262,23 @@ function importCode() {
                     cell.style.backgroundColor = colors[color];
                     cell.dataset.color = color;
                 }
+            });
+
+            // Crear el formato .db y copiar al portapapeles
+            const dbFormat = colorsArray.map(color => `0x${color}`).join(', ');
+            const dbString = `.db ${dbFormat}`;
+            navigator.clipboard.writeText(dbString).then(() => {
+                Swal.fire({
+                    title: 'Código copiado!',
+                    text: 'El código ha sido copiado al portapapeles en formato .db.',
+                    icon: 'success'
+                });
+            }).catch((error) => {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Hubo un problema al copiar al portapapeles.',
+                    icon: 'error'
+                });
             });
         }
     });
@@ -277,16 +294,16 @@ function exportCode() {
     });
     code = code.slice(0, -1); // Eliminar la última coma
 
-    // Usamos la API de Clipboard para copiar al portapapeles
-    navigator.clipboard.writeText(code).then(() => {
-        // Mostramos una alerta usando SweetAlert que confirma que se copió al portapapeles
+    // Crear el formato .db y copiar al portapapeles
+    const dbFormat = code.split(',').map(color => `0x${color}`).join(', ');
+    const dbString = `.db ${dbFormat}`;
+    navigator.clipboard.writeText(dbString).then(() => {
         Swal.fire({
             title: 'Código copiado!',
-            text: 'El código ha sido copiado al portapapeles.',
+            text: 'El código ha sido copiado al portapapeles en formato .db.',
             icon: 'success'
         });
     }).catch((error) => {
-        // Si hay un error al copiar, mostramos un mensaje de error
         Swal.fire({
             title: 'Error',
             text: 'Hubo un problema al copiar al portapapeles.',
@@ -294,6 +311,7 @@ function exportCode() {
         });
     });
 }
+
 const letters = {
     'A': [
         "010",
@@ -484,25 +502,6 @@ function writeTextToGrid(text) {
     let startX = 0;
     let startY = 0;
 
-    text.split('').forEach((char) => {
-        const pattern = letters[char.toUpperCase()];
-        if (pattern) {
-            if (startX + pattern[0].length > 32) { // Si no cabe en la línea
-                startX = 0; // Reiniciar la posición X
-                startY += 6; // Mover a la siguiente línea
-            }
-            drawLetterOnGrid(pattern, startX, startY);
-            startX += pattern[0].length + 1; // Mover a la siguiente posición X
-        }
-    });
-}
-
-// Función para dibujar una letra en la cuadrícula
-function writeTextToGrid(text) {
-    clearGrid();
-    let startX = 0;
-    let startY = 0;
-
     text.split(' ').forEach((word) => {
         const wordPattern = word.split('').map(char => letters[char.toUpperCase()]).filter(Boolean);
         let wordWidth = wordPattern.reduce((acc, pattern) => acc + pattern[0].length + 1, -1); // -1 for the space
@@ -552,3 +551,4 @@ document.getElementById('write-text').addEventListener('click', () => {
     const text = document.getElementById('text-input').value;
     writeTextToGrid(text);
 });
+
